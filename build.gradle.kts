@@ -1,6 +1,4 @@
 buildscript {
-    val kotlinVersion = "1.4.20"
-
     repositories {
         gradlePluginPortal()
         jcenter()
@@ -8,9 +6,10 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.20")
-        classpath("org.jetbrains.kotlin:kotlin-serialization:$kotlinVersion")
         classpath("com.android.tools.build:gradle:4.1.1")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
+        classpath("org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlin}")
+        classpath("com.squareup.sqldelight:gradle-plugin:${Versions.sqlDelight}")
     }
 }
 
@@ -19,5 +18,7 @@ allprojects {
         google()
         jcenter()
         mavenCentral()
+        maven(url = "https://dl.bintray.com/ekito/koin")
+        maven(url = "https://jitpack.io")
     }
 }

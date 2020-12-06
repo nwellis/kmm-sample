@@ -3,19 +3,12 @@ plugins {
     kotlin("android")
 }
 
-dependencies {
-    implementation(project(":shared"))
-    implementation("com.google.android.material:material:1.2.1")
-    implementation("androidx.appcompat:appcompat:1.2.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.0.2")
-}
-
 android {
-    compileSdkVersion(29)
+    compileSdkVersion(AndroidSdk.compile)
     defaultConfig {
         applicationId = "me.nickellis.kmmsample.androidApp"
-        minSdkVersion(24)
-        targetSdkVersion(29)
+        minSdkVersion(AndroidSdk.min)
+        targetSdkVersion(AndroidSdk.target)
         versionCode = 1
         versionName = "1.0"
     }
@@ -24,4 +17,21 @@ android {
             isMinifyEnabled = false
         }
     }
+    lintOptions {
+        // TODO: Not working? Refactor to single Dependencies object?
+        // https://github.com/PicPay/version-checker-gradle-lint
+        enable("VersionCheckerGradleLint")
+    }
+}
+
+dependencies {
+    implementation(project(":shared"))
+    implementation(AndroidX.appCompat)
+
+    implementation(UI.materialUI)
+    implementation(UI.constrainLayout)
+
+    implementation(Jetpack.lifecycleExtensions)
+    implementation(Jetpack.lifecycleViewmodelKtx)
+    implementation(Jetpack.lifecycleLivedataKtx)
 }

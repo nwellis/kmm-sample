@@ -1,13 +1,10 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
-val coroutinesVersion = "1.4.2"
-val serializationVersion = "1.0.1"
-val ktorVersion = "1.4.0"
-
 plugins {
     kotlin("multiplatform")
-    kotlin("plugin.serialization")
+    id("kotlinx-serialization")
     id("com.android.library")
+    id("com.squareup.sqldelight")
 }
 
 kotlin {
@@ -22,10 +19,25 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:$serializationVersion")
-                implementation("io.ktor:ktor-client-core:$ktorVersion")
-                implementation("io.ktor:ktor-client-serialization:$ktorVersion")
+                // Kotlin
+                implementation(Kotlin.coroutines)
+                implementation(Kotlin.coreSerialization)
+
+                // Ktor
+                implementation(Ktor.clientCore)
+                implementation(Ktor.clientJson)
+                implementation(Ktor.clientLogging)
+                implementation(Ktor.clientSerialization)
+
+                // SQL Delight
+                implementation(SqlDelight.runtime)
+                implementation(SqlDelight.coroutineExtensions)
+
+                // koin
+                api(Koin.core)
+
+                // kermit
+                api(Deps.kermit)
             }
         }
         val commonTest by getting {
@@ -36,19 +48,20 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("com.google.android.material:material:1.2.1")
-                implementation("io.ktor:ktor-client-android:$ktorVersion")
+                implementation(Ktor.clientAndroid)
+                implementation(SqlDelight.androidDriver)
             }
         }
         val androidTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))
-                implementation("junit:junit:4.13.1")
+                implementation(Test.junit)
             }
         }
         val iosMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-ios:$ktorVersion")
+                implementation(Ktor.clientIos)
+                implementation(SqlDelight.nativeDriver)
             }
         }
         val iosTest by getting
@@ -56,11 +69,11 @@ kotlin {
 }
 
 android {
-    compileSdkVersion(29)
+    compileSdkVersion(AndroidSdk.compile)
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdkVersion(24)
-        targetSdkVersion(29)
+        minSdkVersion(AndroidSdk.min)
+        targetSdkVersion(AndroidSdk.target)
     }
 }
 
