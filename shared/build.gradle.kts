@@ -20,24 +20,24 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 // Kotlin
-                implementation(Kotlin.coroutines)
-                implementation(Kotlin.coreSerialization)
+                implementation(Libs.kotlinCoroutines)
+                implementation(Libs.kotlinCoreSerialization)
 
                 // Ktor
-                implementation(Ktor.clientCore)
-                implementation(Ktor.clientJson)
-                implementation(Ktor.clientLogging)
-                implementation(Ktor.clientSerialization)
+                implementation(Libs.ktorClientCore)
+                implementation(Libs.ktorClientJson)
+                implementation(Libs.ktorClientLogging)
+                implementation(Libs.ktorClientSerialization)
 
                 // SQL Delight
-                implementation(SqlDelight.runtime)
-                implementation(SqlDelight.coroutineExtensions)
+                implementation(Libs.sqlDelightRuntime)
+                implementation(Libs.sqlDelightCoroutineExtensions)
 
                 // koin
-                api(Koin.core)
+                api(Libs.koinCore)
 
                 // kermit
-                api(Deps.kermit)
+                api(Libs.kermit)
             }
         }
         val commonTest by getting {
@@ -48,20 +48,20 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation(Ktor.clientAndroid)
-                implementation(SqlDelight.androidDriver)
+                implementation(Libs.ktorClientAndroid)
+                implementation(Libs.sqlDelightAndroidDriver)
             }
         }
         val androidTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))
-                implementation(Test.junit)
+                implementation(Libs.junit)
             }
         }
         val iosMain by getting {
             dependencies {
-                implementation(Ktor.clientIos)
-                implementation(SqlDelight.nativeDriver)
+                implementation(Libs.ktorClientIos)
+                implementation(Libs.sqlDelightNativeDriver)
             }
         }
         val iosTest by getting

@@ -36,5 +36,4 @@ object Versions {
     const val materialUi = "1.2.1"
     const val constraintLayout = "2.0.4"
     const val jetpackLifecycle = "2.2.0"
-    // const val jetpackLifecycle = "2.1.0" VersionCheckerGradleLint lint testing
 }

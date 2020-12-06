@@ -18,7 +18,6 @@ android {
         }
     }
     lintOptions {
-        // TODO: Not working? Refactor to single Dependencies object?
         // https://github.com/PicPay/version-checker-gradle-lint
         enable("VersionCheckerGradleLint")
     }
@@ -26,12 +25,15 @@ android {
 
 dependencies {
     implementation(project(":shared"))
-    implementation(AndroidX.appCompat)
+    implementation(AndroidLibs.appCompat)
 
-    implementation(UI.materialUI)
-    implementation(UI.constrainLayout)
+    implementation(AndroidLibs.koinAndroid)
+    implementation(AndroidLibs.koinAndroidViewModel)
 
-    implementation(Jetpack.lifecycleExtensions)
-    implementation(Jetpack.lifecycleViewmodelKtx)
-    implementation(Jetpack.lifecycleLivedataKtx)
+    implementation(AndroidLibs.materialUI)
+    implementation(AndroidLibs.constrainLayout)
+
+    implementation(AndroidLibs.lifecycleExtensions)
+    implementation(AndroidLibs.lifecycleViewmodelKtx)
+    implementation(AndroidLibs.lifecycleLivedataKtx)
 }
