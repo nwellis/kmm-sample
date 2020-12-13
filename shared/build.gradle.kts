@@ -1,7 +1,9 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+import com.codingfeline.buildkonfig.compiler.FieldSpec.Type
 
 plugins {
     kotlin("multiplatform")
+    id("com.codingfeline.buildkonfig")
     id("kotlinx-serialization")
     id("com.android.library")
     id("com.squareup.sqldelight")
@@ -67,6 +69,23 @@ kotlin {
         }
         val iosTest by getting
     }
+}
+
+buildkonfig {
+    packageName = "me.nickellis.kmmsample"
+
+    defaultConfigs {
+        buildConfigField(Type.STRING, "OAUTH_GITHUB_USERNAME",
+            (project.extra["auth.github.username"] as? String ?: ""))
+        buildConfigField(Type.STRING, "OAUTH_GITHUB_PASSWORD",
+            (project.extra["auth.github.pat"] as? String ?: ""))
+    }
+
+    // https://github.com/yshrsmz/BuildKonfig/issues/41
+//    targetConfigs(closureOf<NamedDomainObjectContainer<TargetConfigDsl>> {
+//        create("android") {}
+//        create("ios") {}
+//    })
 }
 
 android {

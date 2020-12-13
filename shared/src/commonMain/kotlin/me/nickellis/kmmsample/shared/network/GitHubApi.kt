@@ -25,6 +25,7 @@ import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 import io.ktor.client.features.logging.*
 import kotlinx.serialization.json.Json
+import me.nickellis.kmmsample.BuildKonfig
 
 class GitHubApi {
     companion object {
@@ -44,8 +45,8 @@ class GitHubApi {
             }
             install(Auth) {
                 basic {
-                    username = "github username"
-                    password = "PAT here"
+                    username = BuildKonfig.OAUTH_GITHUB_USERNAME
+                    password = BuildKonfig.OAUTH_GITHUB_PASSWORD
                 }
             }
         }
