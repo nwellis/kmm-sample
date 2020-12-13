@@ -26,6 +26,7 @@ kotlin {
                 // Ktor
                 implementation(Libs.ktorClientCore)
                 implementation(Libs.ktorClientJson)
+                implementation(Libs.ktorClientAuth)
                 implementation(Libs.ktorClientLogging)
                 implementation(Libs.ktorClientSerialization)
 

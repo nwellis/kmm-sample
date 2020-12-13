@@ -18,5 +18,36 @@
 
 package me.nickellis.kmmsample.shared.network
 
+import io.ktor.client.*
+import io.ktor.client.features.auth.*
+import io.ktor.client.features.auth.providers.*
+import io.ktor.client.features.json.*
+import io.ktor.client.features.json.serializer.*
+import io.ktor.client.features.logging.*
+import kotlinx.serialization.json.Json
+
 class GitHubApi {
+    companion object {
+        private const val baseUrl = "https://api.github.com"
+    }
+
+    private val nonStrictJson = Json { isLenient = true; ignoreUnknownKeys = true }
+
+    private val client by lazy {
+        HttpClient {
+            install(JsonFeature) {
+                serializer = KotlinxSerializer(nonStrictJson)
+            }
+            install(Logging) {
+                logger = Logger.DEFAULT
+                level = LogLevel.INFO
+            }
+            install(Auth) {
+                basic {
+                    username = "github username"
+                    password = "PAT here"
+                }
+            }
+        }
+    }
 }

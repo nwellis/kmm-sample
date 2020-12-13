@@ -28,6 +28,7 @@ object Libs {
     // Ktor
     const val ktorClientCore = "io.ktor:ktor-client-core:${Versions.ktor}"
     const val ktorClientJson = "io.ktor:ktor-client-json:${Versions.ktor}"
+    const val ktorClientAuth = "io.ktor:ktor-client-auth:${Versions.ktor}"
     const val ktorClientLogging = "io.ktor:ktor-client-logging:${Versions.ktor}"
     const val ktorClientSerialization = "io.ktor:ktor-client-serialization:${Versions.ktor}"
     const val ktorClientAndroid = "io.ktor:ktor-client-android:${Versions.ktor}"
