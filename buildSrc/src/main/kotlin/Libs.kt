@@ -16,29 +16,29 @@
 
 object Libs {
     // Kotlin
-    val kotlinCoroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}"
-    val kotlinCoreSerialization = "org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.kotlinxSerialization}"
+    const val kotlinCoroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}"
+    const val kotlinCoreSerialization = "org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.kotlinxSerialization}"
 
     // Logging
-    val kermit = "co.touchlab:kermit:${Versions.kermit}"
+    const val kermit = "co.touchlab:kermit:${Versions.kermit}"
 
     // Koin
-    val koinCore = "org.koin:koin-core:${Versions.koin}"
+    const val koinCore = "org.koin:koin-core:${Versions.koin}"
 
     // Ktor
-    val ktorClientCore = "io.ktor:ktor-client-core:${Versions.ktor}"
-    val ktorClientJson = "io.ktor:ktor-client-json:${Versions.ktor}"
-    val ktorClientLogging = "io.ktor:ktor-client-logging:${Versions.ktor}"
-    val ktorClientSerialization = "io.ktor:ktor-client-serialization:${Versions.ktor}"
-    val ktorClientAndroid = "io.ktor:ktor-client-android:${Versions.ktor}"
-    val ktorClientIos = "io.ktor:ktor-client-ios:${Versions.ktor}"
+    const val ktorClientCore = "io.ktor:ktor-client-core:${Versions.ktor}"
+    const val ktorClientJson = "io.ktor:ktor-client-json:${Versions.ktor}"
+    const val ktorClientLogging = "io.ktor:ktor-client-logging:${Versions.ktor}"
+    const val ktorClientSerialization = "io.ktor:ktor-client-serialization:${Versions.ktor}"
+    const val ktorClientAndroid = "io.ktor:ktor-client-android:${Versions.ktor}"
+    const val ktorClientIos = "io.ktor:ktor-client-ios:${Versions.ktor}"
 
     // SQL Delight
-    val sqlDelightRuntime = "com.squareup.sqldelight:runtime:${Versions.sqlDelight}"
-    val sqlDelightCoroutineExtensions = "com.squareup.sqldelight:coroutines-extensions:${Versions.sqlDelight}"
-    val sqlDelightAndroidDriver = "com.squareup.sqldelight:android-driver:${Versions.sqlDelight}"
-    val sqlDelightNativeDriver = "com.squareup.sqldelight:native-driver:${Versions.sqlDelight}"
+    const val sqlDelightRuntime = "com.squareup.sqldelight:runtime:${Versions.sqlDelight}"
+    const val sqlDelightCoroutineExtensions = "com.squareup.sqldelight:coroutines-extensions:${Versions.sqlDelight}"
+    const val sqlDelightAndroidDriver = "com.squareup.sqldelight:android-driver:${Versions.sqlDelight}"
+    const val sqlDelightNativeDriver = "com.squareup.sqldelight:native-driver:${Versions.sqlDelight}"
 
     // Test
-    val junit = "junit:junit:${Versions.junit}"
+    const val junit = "junit:junit:${Versions.junit}"
 }

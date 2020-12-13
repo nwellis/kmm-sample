@@ -16,18 +16,18 @@
 
 object AndroidLibs {
     // AndroidX
-    val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
+    const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
 
     // UI
-    val materialUI = "com.google.android.material:material:${Versions.materialUi}"
-    val constrainLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
+    const val materialUI = "com.google.android.material:material:${Versions.materialUi}"
+    const val constrainLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
 
     // Koin
-    val koinAndroid = "org.koin:koin-android:${Versions.koin}"
-    val koinAndroidViewModel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
+    const val koinAndroid = "org.koin:koin-android:${Versions.koin}"
+    const val koinAndroidViewModel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
 
     // Jetpack
-    val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.jetpackLifecycle}"
-    val lifecycleViewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.jetpackLifecycle}"
-    val lifecycleLivedataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.jetpackLifecycle}"
+    const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.jetpackLifecycle}"
+    const val lifecycleViewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.jetpackLifecycle}"
+    const val lifecycleLivedataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.jetpackLifecycle}"
 }
