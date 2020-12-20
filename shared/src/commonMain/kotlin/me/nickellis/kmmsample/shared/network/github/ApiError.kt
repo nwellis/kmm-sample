@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package me.nickellis.kmmsample.shared.network
+package me.nickellis.kmmsample.shared.network.github
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

@@ -16,7 +16,7 @@
  *
  */
 
-package me.nickellis.kmmsample.shared.network
+package me.nickellis.kmmsample.shared.network.github
 
 import io.ktor.client.*
 import io.ktor.client.features.*
