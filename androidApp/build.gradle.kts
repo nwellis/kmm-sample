@@ -34,6 +34,7 @@ dependencies {
     implementation(AndroidLibs.constrainLayout)
 
     implementation(AndroidLibs.lifecycleExtensions)
+    implementation(AndroidLibs.lifecycleRuntimeKtx)
     implementation(AndroidLibs.lifecycleViewmodelKtx)
     implementation(AndroidLibs.lifecycleLivedataKtx)
 }

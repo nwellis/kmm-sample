@@ -28,6 +28,7 @@ object AndroidLibs {
 
     // Jetpack
     const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.jetpackLifecycle}"
+    const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.jetpackLifecycle}"
     const val lifecycleViewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.jetpackLifecycle}"
     const val lifecycleLivedataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.jetpackLifecycle}"
 }
