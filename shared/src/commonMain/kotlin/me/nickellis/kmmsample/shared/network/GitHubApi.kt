@@ -19,11 +19,15 @@
 package me.nickellis.kmmsample.shared.network
 
 import io.ktor.client.*
+import io.ktor.client.features.*
 import io.ktor.client.features.auth.*
 import io.ktor.client.features.auth.providers.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 import io.ktor.client.features.logging.*
+import io.ktor.client.request.*
+import io.ktor.client.request.get
+import io.ktor.http.*
 import kotlinx.serialization.json.Json
 import me.nickellis.kmmsample.BuildKonfig
 
@@ -32,10 +36,18 @@ class GitHubApi {
         private const val baseUrl = "https://api.github.com"
     }
 
-    private val nonStrictJson = Json { isLenient = true; ignoreUnknownKeys = true }
+    private val nonStrictJson = Json {
+        isLenient = true
+        ignoreUnknownKeys = true
+        prettyPrint = true
+    }
 
     private val client by lazy {
         HttpClient {
+            defaultRequest {
+                header(HttpHeaders.UserAgent, "me.nickellis.kmmsample/1.0")
+            }
+
             install(JsonFeature) {
                 serializer = KotlinxSerializer(nonStrictJson)
             }
