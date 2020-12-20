@@ -21,5 +21,5 @@ import io.ktor.http.*
 /**
  * <a href="https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#list-organization-repositories-preview-notices">Repo Preview Features</a>
  */
-val ContentType.Application.RepoPreviewJson: String
-    get() = "application/vnd.github.nebula-preview+json"
+val ContentType.Application.RepoPreviewJson: ContentType
+    get() = ContentType.parse("application/vnd.github.nebula-preview+json")

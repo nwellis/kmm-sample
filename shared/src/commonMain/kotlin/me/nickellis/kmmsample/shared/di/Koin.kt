@@ -16,14 +16,23 @@
 
 package me.nickellis.kmmsample.shared.di
 
+import me.nickellis.kmmsample.shared.Platform
+import me.nickellis.kmmsample.shared.network.github.GitHubApi
+import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
 
-fun initKoin(appDeclaration: KoinAppDeclaration = {}) = {
-
+fun initKoin(appDeclaration: KoinAppDeclaration = {}) = startKoin {
+    appDeclaration()
+    modules(commonModule)
 }
 
 // iOS call
 fun initKoin() = initKoin {  }
 
-val commonModule = module {}
+val commonModule = module {
+    val platform = Platform()
+
+    single { platform.logger }
+    single { GitHubApi() }
+}

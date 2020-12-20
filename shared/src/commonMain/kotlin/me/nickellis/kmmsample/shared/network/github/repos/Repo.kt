@@ -18,6 +18,7 @@ package me.nickellis.kmmsample.shared.network.github.repos
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.nickellis.kmmsample.shared.network.github.user.Owner
 
 @Serializable
 data class Repo(
@@ -28,8 +29,9 @@ data class Repo(
     @SerialName("url") val url: String,
     @SerialName("stargazers_count") val starCount: Int,
     @SerialName("watchers_count") val watchCount: Int,
-    @SerialName("subscribers_count") val subscribersCount: Int,
+    // @SerialName("subscribers_count") val subscribersCount: Int, Missing?
     @SerialName("topics") val topics: List<String> = emptyList(),
     @SerialName("default_branch") val defaultBranch: String,
     @SerialName("visibility") val visibility: String,
+    @SerialName("owner") val owner: Owner,
 )
