@@ -17,6 +17,7 @@
 package me.nickellis.kmmsample.androidApp
 
 import android.app.Application
+import me.nickellis.kmmsample.androidApp.di.appModule
 import me.nickellis.kmmsample.shared.di.initKoin
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -28,7 +29,7 @@ class MainApplication : Application() {
         initKoin {
             androidLogger()
             androidContext(this@MainApplication)
-            modules()
+            modules(appModule)
         }
     }
 }
