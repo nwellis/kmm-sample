@@ -14,23 +14,13 @@
  * limitations under the License.
  */
 
-package me.nickellis.kmmsample.androidApp
+package me.nickellis.kmmsample.androidApp.ui
 
-import android.app.Application
-import me.nickellis.kmmsample.androidApp.di.appModule
-import me.nickellis.kmmsample.androidApp.di.viewModelModule
-import me.nickellis.kmmsample.shared.di.initKoin
-import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
+import android.content.Context
+import androidx.lifecycle.ViewModel
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
-class MainApplication : Application() {
-    override fun onCreate() {
-        super.onCreate()
-
-        initKoin {
-            androidLogger()
-            androidContext(this@MainApplication)
-            modules(appModule, viewModelModule)
-        }
-    }
+abstract class BaseViewModel : ViewModel(), KoinComponent {
+    private val context: Context by inject()
 }

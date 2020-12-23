@@ -14,23 +14,15 @@
  * limitations under the License.
  */
 
-package me.nickellis.kmmsample.androidApp
+package me.nickellis.kmmsample.androidApp.ui.repos
 
-import android.app.Application
-import me.nickellis.kmmsample.androidApp.di.appModule
-import me.nickellis.kmmsample.androidApp.di.viewModelModule
-import me.nickellis.kmmsample.shared.di.initKoin
-import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
+import androidx.lifecycle.SavedStateHandle
+import me.nickellis.kmmsample.androidApp.ui.BaseViewModel
+import me.nickellis.kmmsample.shared.network.github.GitHubApi
+import org.koin.core.inject
 
-class MainApplication : Application() {
-    override fun onCreate() {
-        super.onCreate()
+class ReposViewModel(val handle: SavedStateHandle) : BaseViewModel() {
 
-        initKoin {
-            androidLogger()
-            androidContext(this@MainApplication)
-            modules(appModule, viewModelModule)
-        }
-    }
+    private val gitHubApi: GitHubApi by inject()
+
 }

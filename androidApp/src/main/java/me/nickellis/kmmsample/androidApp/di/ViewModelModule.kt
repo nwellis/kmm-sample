@@ -14,23 +14,12 @@
  * limitations under the License.
  */
 
-package me.nickellis.kmmsample.androidApp
+package me.nickellis.kmmsample.androidApp.di
 
-import android.app.Application
-import me.nickellis.kmmsample.androidApp.di.appModule
-import me.nickellis.kmmsample.androidApp.di.viewModelModule
-import me.nickellis.kmmsample.shared.di.initKoin
-import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
+import me.nickellis.kmmsample.androidApp.ui.repos.ReposViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.dsl.module
 
-class MainApplication : Application() {
-    override fun onCreate() {
-        super.onCreate()
-
-        initKoin {
-            androidLogger()
-            androidContext(this@MainApplication)
-            modules(appModule, viewModelModule)
-        }
-    }
+val viewModelModule = module {
+    viewModel { ReposViewModel(get()) }
 }
