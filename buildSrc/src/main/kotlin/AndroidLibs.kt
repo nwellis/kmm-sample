@@ -15,20 +15,29 @@
  */
 
 object AndroidLibs {
-    // AndroidX
+    //region AndroidX
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
+    //endregion
 
-    // UI
+    //region UI
     const val materialUI = "com.google.android.material:material:${Versions.materialUi}"
     const val constrainLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
+    //endregion
 
-    // Koin
+    //region Koin
     const val koinAndroid = "org.koin:koin-android:${Versions.koin}"
     const val koinAndroidViewModel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
+    //endregion
 
-    // Jetpack
+    //region Jetpack Lifecycle
     const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.jetpackLifecycle}"
     const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.jetpackLifecycle}"
     const val lifecycleViewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.jetpackLifecycle}"
     const val lifecycleLivedataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.jetpackLifecycle}"
+    //endregion
+
+    //region Jetpack Navigation
+    const val navigationFragmentKtx = "androidx.navigation:navigation-fragment-ktx:${Versions.jetpackNavigation}"
+    const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:${Versions.jetpackNavigation}"
+    //endregion
 }

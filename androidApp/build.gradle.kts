@@ -37,4 +37,7 @@ dependencies {
     implementation(AndroidLibs.lifecycleRuntimeKtx)
     implementation(AndroidLibs.lifecycleViewmodelKtx)
     implementation(AndroidLibs.lifecycleLivedataKtx)
+
+    implementation(AndroidLibs.navigationFragmentKtx)
+    implementation(AndroidLibs.navigationUiKtx)
 }
