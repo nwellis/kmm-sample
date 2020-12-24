@@ -18,8 +18,15 @@ package me.nickellis.kmmsample.androidApp.util
 
 import androidx.lifecycle.MutableLiveData
 
+/**
+ * Represents the state of a resource that is not immediately available. Generally this is used
+ * for some network bound resource that is [InProgress] while it is being fetched, and the result
+ * is captured with [Success] or [Error].
+ *
+ * @see <a href="https://medium.com/androiddevelopers/sealed-with-a-class-a906f28ab7b5">Article</a>
+ */
 sealed class Resource<out T : Any> {
-    object Loading : Resource<Nothing>()
+    object InProgress : Resource<Nothing>()
     data class Success<out T : Any>(val data: T) : Resource<T>()
     data class Error(val error: Throwable) : Resource<Nothing>()
 }
@@ -28,7 +35,7 @@ sealed class Resource<out T : Any> {
 suspend fun <T : Any> MutableLiveData<Resource<T>>.updateWith(
     block: suspend () -> T
 ) = runCatching {
-    value = Resource.Loading
+    value = Resource.InProgress
     block()
 }.onFailure {
     value = Resource.Error(it)
