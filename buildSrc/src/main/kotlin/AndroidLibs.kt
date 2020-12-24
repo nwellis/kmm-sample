@@ -25,6 +25,7 @@ object AndroidLibs {
     //endregion
 
     //region UI
+    const val viewBindingDelegate = "com.kirich1409.viewbindingpropertydelegate:viewbindingpropertydelegate:${Versions.viewBindingDelegate}"
     const val materialUI = "com.google.android.material:material:${Versions.materialUi}"
     const val constrainLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
     //endregion

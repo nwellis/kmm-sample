@@ -13,15 +13,32 @@ android {
         versionCode = 1
         versionName = "1.0"
     }
+
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
         }
     }
+    buildFeatures {
+        viewBinding = true
+    }
+
+    compileOptions {
+        sourceCompatibility(JavaVersion.VERSION_1_8)
+        targetCompatibility(JavaVersion.VERSION_1_8)
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
     lintOptions {
         // https://github.com/PicPay/version-checker-gradle-lint
         enable("VersionCheckerGradleLint")
     }
+}
+
+repositories {
+    maven(url = "https://dl.bintray.com/kirich1409/maven")
 }
 
 dependencies {
@@ -34,6 +51,7 @@ dependencies {
     implementation(AndroidLibs.koinAndroid)
     implementation(AndroidLibs.koinAndroidViewModel)
 
+    implementation(AndroidLibs.viewBindingDelegate)
     implementation(AndroidLibs.materialUI)
     implementation(AndroidLibs.constrainLayout)
 

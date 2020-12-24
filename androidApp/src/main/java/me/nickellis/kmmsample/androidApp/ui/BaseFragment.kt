@@ -29,17 +29,6 @@ abstract class BaseFragment : Fragment(), KoinComponent {
     @LayoutRes
     open val layoutId: Int? = null
 
-    /**
-     * Called after [onCreateView], setup views here.
-     */
-    open fun setupViews() {}
-
-    /**
-     * Called after [onCreateView] and [setupViews], once views are setup we can subscribe to
-     * our observables and act upon our views.
-     */
-    open fun subscribeToObservables() {}
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -49,10 +38,4 @@ abstract class BaseFragment : Fragment(), KoinComponent {
         container,
         false
     )
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setupViews()
-        subscribeToObservables()
-    }
 }

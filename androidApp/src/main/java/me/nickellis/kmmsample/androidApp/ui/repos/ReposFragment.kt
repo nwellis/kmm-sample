@@ -16,9 +16,12 @@
 
 package me.nickellis.kmmsample.androidApp.ui.repos
 
+import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import by.kirich1409.viewbindingdelegate.viewBinding
 import me.nickellis.kmmsample.androidApp.R
+import me.nickellis.kmmsample.androidApp.databinding.FragmentReposBinding
 import me.nickellis.kmmsample.androidApp.ui.BaseFragment
 import me.nickellis.kmmsample.androidApp.ui.common.list.ReposAdapter
 import me.nickellis.kmmsample.androidApp.util.Resource
@@ -30,22 +33,22 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  */
 class ReposFragment : BaseFragment() {
 
-    private val viewModel: ReposViewModel by viewModel()
     override val layoutId: Int = R.layout.fragment_repos
+    private val binding: FragmentReposBinding by viewBinding()
+    private val viewModel: ReposViewModel by viewModel()
 
     private lateinit var reposAdapter: ReposAdapter
 
-    override fun setupViews() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         reposAdapter = ReposAdapter()
 
-        view?.findViewById<RecyclerView>(R.id.repos_recycler)?.apply {
+        binding.reposRecycler.apply {
             adapter = reposAdapter
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
         }
-    }
 
-    override fun subscribeToObservables() {
         viewModel.repos.observe(viewLifecycleOwner, {
             if (it is Resource.Success) reposAdapter.setRepos(it.data)
         })

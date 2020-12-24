@@ -32,10 +32,13 @@ object Versions {
     const val junit = "4.13.1"
     const val testRunner = "1.3.0"
 
+    //region Android
     const val axAppCompat = "1.2.0"
     const val axLegacySupport = "1.0.0"
     const val materialUi = "1.2.1"
     const val constraintLayout = "2.0.4"
     const val jetpackLifecycle = "2.2.0"
     const val jetpackNavigation = "2.3.2"
+    const val viewBindingDelegate = "1.3.1"
+    //endregion
 }
