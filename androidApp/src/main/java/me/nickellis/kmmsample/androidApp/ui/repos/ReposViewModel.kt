@@ -28,7 +28,9 @@ import me.nickellis.kmmsample.shared.network.github.GitHubApi
 import me.nickellis.kmmsample.shared.network.github.repos.Repo
 import org.koin.core.inject
 
-class ReposViewModel(val handle: SavedStateHandle) : BaseViewModel() {
+class ReposViewModel(
+    //val handle: SavedStateHandle TODO
+) : BaseViewModel() {
 
     private val gitHubApi: GitHubApi by inject()
 
