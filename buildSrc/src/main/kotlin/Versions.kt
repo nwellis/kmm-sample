@@ -21,7 +21,7 @@
  * @see <a href="https://github.com/PicPay/version-checker-gradle-lint>Version check linter</a>
  */
 object Versions {
-    const val kotlin = "1.4.20"
+    const val kotlin = "1.4.21"
     const val kotlinCoroutines = "1.4.2-native-mt"
     const val ktor = "1.4.3"
     const val kotlinxSerialization = "1.0.0-RC"
@@ -32,7 +32,8 @@ object Versions {
     const val junit = "4.13.1"
     const val testRunner = "1.3.0"
 
-    const val appCompat = "1.2.0"
+    const val axAppCompat = "1.2.0"
+    const val axLegacySupport = "1.0.0"
     const val materialUi = "1.2.1"
     const val constraintLayout = "2.0.4"
     const val jetpackLifecycle = "2.2.0"

@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    id("kotlin-android")
 }
 
 android {
@@ -24,8 +25,11 @@ android {
 }
 
 dependencies {
+    implementation(AndroidLibs.kotlinStdLib)
     implementation(project(":shared"))
-    implementation(AndroidLibs.appCompat)
+
+    implementation(AndroidLibs.axAppCompat)
+    implementation(AndroidLibs.axLegacySupport)
 
     implementation(AndroidLibs.koinAndroid)
     implementation(AndroidLibs.koinAndroidViewModel)

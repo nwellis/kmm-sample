@@ -1,3 +1,5 @@
+import org.gradle.kotlin.dsl.extra
+
 /*
  * Copyright (C) 2020 Nick Ellis
  *
@@ -15,8 +17,11 @@
  */
 
 object AndroidLibs {
+    const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
+
     //region AndroidX
-    const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
+    const val axAppCompat = "androidx.appcompat:appcompat:${Versions.axAppCompat}"
+    const val axLegacySupport = "androidx.legacy:legacy-support-v4:${Versions.axLegacySupport}"
     //endregion
 
     //region UI
