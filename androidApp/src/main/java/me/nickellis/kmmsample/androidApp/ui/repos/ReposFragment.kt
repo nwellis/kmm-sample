@@ -50,4 +50,9 @@ class ReposFragment : BaseFragment() {
             if (it is Resource.Success) reposAdapter.setRepos(it.data)
         })
     }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.refresh()
+    }
 }

@@ -29,6 +29,7 @@ class ReposAdapter : RecyclerView.Adapter<RepoViewHolder>() {
             clear()
             addAll(repos)
         }
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepoViewHolder {
