@@ -17,15 +17,17 @@
 package me.nickellis.kmmsample.androidApp.ui.common.list.viewholder
 
 import android.view.ViewGroup
-import android.widget.TextView
 import me.nickellis.kmmsample.androidApp.R
+import me.nickellis.kmmsample.androidApp.databinding.VhRepoBinding
 import me.nickellis.kmmsample.shared.network.github.repos.Repo
 
 class RepoViewHolder(parent: ViewGroup) : BaseViewHolder<Repo>(
     parent = parent,
     layoutId = R.layout.vh_repo
 ) {
+    private val binding: VhRepoBinding = VhRepoBinding.bind(itemView)
+
     override fun bindTo(item: Repo, isSelected: Boolean) {
-        (itemView as? TextView)?.text = item.fullName
+        binding.root.text = item.fullName
     }
 }
