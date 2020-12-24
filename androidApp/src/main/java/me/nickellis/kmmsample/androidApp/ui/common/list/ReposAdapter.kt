@@ -22,7 +22,14 @@ import me.nickellis.kmmsample.androidApp.ui.common.list.viewholder.RepoViewHolde
 import me.nickellis.kmmsample.shared.network.github.repos.Repo
 
 class ReposAdapter : RecyclerView.Adapter<RepoViewHolder>() {
-    private val repos: List<Repo> = emptyList()
+    private val repos: MutableList<Repo> = mutableListOf()
+
+    fun setRepos(repos: List<Repo>) {
+        this.repos.apply {
+            clear()
+            addAll(repos)
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepoViewHolder {
         return RepoViewHolder(parent)
