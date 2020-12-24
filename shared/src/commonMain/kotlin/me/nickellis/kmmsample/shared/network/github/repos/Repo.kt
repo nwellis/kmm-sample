@@ -29,7 +29,6 @@ data class Repo(
     @SerialName("url") val url: String,
     @SerialName("stargazers_count") val starCount: Int,
     @SerialName("watchers_count") val watchCount: Int,
-    // @SerialName("subscribers_count") val subscribersCount: Int, Missing?
     @SerialName("topics") val topics: List<String> = emptyList(),
     @SerialName("default_branch") val defaultBranch: String,
     @SerialName("visibility") val visibility: String,

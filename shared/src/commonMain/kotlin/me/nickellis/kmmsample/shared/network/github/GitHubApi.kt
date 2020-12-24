@@ -44,7 +44,6 @@ class GitHubApi : KoinComponent {
     private val nonStrictJson = Json {
         isLenient = true
         ignoreUnknownKeys = true
-        prettyPrint = true
     }
 
     private val client by lazy {
