@@ -23,4 +23,6 @@ import org.koin.core.inject
 
 abstract class BaseViewModel : ViewModel(), KoinComponent {
     private val context: Context by inject()
+
+    open fun refresh(force: Boolean = false) {}
 }

@@ -16,13 +16,28 @@
 
 package me.nickellis.kmmsample.androidApp.ui.repos
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 import me.nickellis.kmmsample.androidApp.ui.BaseViewModel
+import me.nickellis.kmmsample.androidApp.util.Resource
+import me.nickellis.kmmsample.androidApp.util.updateWith
 import me.nickellis.kmmsample.shared.network.github.GitHubApi
+import me.nickellis.kmmsample.shared.network.github.repos.Repo
 import org.koin.core.inject
 
 class ReposViewModel(val handle: SavedStateHandle) : BaseViewModel() {
 
     private val gitHubApi: GitHubApi by inject()
 
+    private val _repos = MutableLiveData<Resource<List<Repo>>>()
+    val repos: LiveData<Resource<List<Repo>>> = _repos
+
+    override fun refresh(force: Boolean) {
+        viewModelScope.launch {
+            _repos.updateWith { gitHubApi.getRepos() }
+        }
+    }
 }
