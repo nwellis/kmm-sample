@@ -97,6 +97,13 @@ android {
     }
 }
 
+sqldelight {
+    database("GitHubDatabase") {
+        packageName = "me.nickellis.kmmsample"
+        sourceFolders = listOf("sqldelight")
+    }
+}
+
 val packForXcode by tasks.creating(Sync::class) {
     group = "build"
     val mode = System.getenv("CONFIGURATION") ?: "DEBUG"
