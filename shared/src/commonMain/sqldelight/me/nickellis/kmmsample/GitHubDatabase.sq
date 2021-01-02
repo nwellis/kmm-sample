@@ -1,0 +1,9 @@
+CREATE TABLE Repo (
+  id INTEGER NOT NULL,
+  name TEXT NOT NULL,
+  full_name TEXT NOT NULL,
+  url TEXT NOT NULL,
+  stargazers_count INTEGER As Int NOT NULL,
+  watchers_count INTEGER As Int NOT NULL,
+  default_branch TEXT NOT NULL
+);
