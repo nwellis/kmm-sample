@@ -19,7 +19,8 @@ package me.nickellis.kmmsample.androidApp
 import android.app.Application
 import me.nickellis.kmmsample.androidApp.di.appModule
 import me.nickellis.kmmsample.androidApp.di.viewModelModule
-import me.nickellis.kmmsample.shared.di.initKoin
+import me.nickellis.kmmsample.shared.GitHubSDK
+import me.nickellis.kmmsample.shared.create
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 
@@ -27,7 +28,7 @@ class MainApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        initKoin {
+        GitHubSDK.create(this) {
             androidLogger()
             androidContext(this@MainApplication)
             modules(appModule, viewModelModule)

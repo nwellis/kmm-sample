@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020 Nick Ellis
+ * Copyright (C) 2021 Nick Ellis
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,25 +14,16 @@
  * limitations under the License.
  */
 
-package me.nickellis.kmmsample.shared.di
+package me.nickellis.kmmsample.shared
 
-import me.nickellis.kmmsample.shared.Platform
-import me.nickellis.kmmsample.shared.network.github.GitHubApi
-import org.koin.core.context.startKoin
+import android.content.Context
+import me.nickellis.kmmsample.shared.storage.DriverFactory
 import org.koin.dsl.KoinAppDeclaration
-import org.koin.dsl.module
 
-fun initKoin(appDeclaration: KoinAppDeclaration = {}) = startKoin {
-    appDeclaration()
-    modules(commonModule)
-}
-
-// iOS call
-fun initKoin() = initKoin {  }
-
-val commonModule = module {
-    val platform = Platform()
-
-    single { platform.logger }
-    single { GitHubApi() }
-}
+fun GitHubSDK.Companion.create(
+    context: Context,
+    appDeclaration: KoinAppDeclaration = {}
+) = GitHubSDK(
+    sqlDriver = DriverFactory(context.applicationContext).createDriver(),
+    appDeclaration = appDeclaration
+)
