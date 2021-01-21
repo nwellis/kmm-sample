@@ -19,17 +19,22 @@ package me.nickellis.kmmsample.shared
 import com.squareup.sqldelight.db.SqlDriver
 import me.nickellis.kmmsample.GitHubDatabase
 import me.nickellis.kmmsample.shared.network.github.GitHubApi
+import org.koin.core.KoinComponent
 import org.koin.core.context.startKoin
+import org.koin.core.get
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
 
-class GitHubSDK(
+open class GitHubSDK(
     private val sqlDriver: SqlDriver,
     private val appDeclaration: KoinAppDeclaration = {},
-) {
+) : KoinComponent {
     companion object;
 
     private val platform = Platform()
+
+    protected val api: GitHubApi get() = get()
+    protected val database: GitHubDatabase get() = get()
 
     init {
         startKoin {
@@ -37,7 +42,7 @@ class GitHubSDK(
 
             val commonModule = module {
                 single { platform.logger }
-                single { GitHubApi() }
+                single { GitHubApi(get()) }
                 single { GitHubDatabase(sqlDriver) }
             }
 

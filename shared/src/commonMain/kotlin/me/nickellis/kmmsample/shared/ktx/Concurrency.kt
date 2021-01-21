@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package me.nickellis.kmmsample.shared
+package me.nickellis.kmmsample.shared.ktx
 
-import me.nickellis.kmmsample.shared.storage.DriverFactory
+expect fun <T> T.freeze(): T
 
-fun create() = GitHubSDK(
-    sqlDriver = DriverFactory().createDriver(),
-)
+expect val Any?.isFrozen: Boolean
+
+expect fun Any.ensureNotFrozen()

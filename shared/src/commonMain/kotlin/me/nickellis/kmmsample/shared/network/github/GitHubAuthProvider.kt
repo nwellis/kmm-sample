@@ -23,7 +23,7 @@ import io.ktor.http.auth.*
 import me.nickellis.kmmsample.BuildKonfig
 import me.nickellis.kmmsample.shared.ktx.encodeBase64
 
-object GitHubAuthProvider : AuthProvider {
+class GitHubAuthProvider : AuthProvider {
     override val sendWithoutRequest: Boolean = true
     override fun isApplicable(auth: HttpAuthHeader) = true
 
