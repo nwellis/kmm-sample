@@ -1,8 +1,8 @@
 package me.nickellis.kmmsample.shared
 
-import co.touchlab.kermit.Logger
+import co.touchlab.kermit.Kermit
 
 expect class Platform() {
     val platform: String
-    val logger: Logger
+    val logger: Kermit
 }

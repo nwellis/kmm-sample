@@ -18,4 +18,6 @@ package me.nickellis.kmmsample.shared.ktx
 
 actual fun <T> T.freeze(): T = this
 
+actual val Any?.isFrozen: Boolean get() = false
+
 actual fun Any.ensureNotFrozen() = Unit

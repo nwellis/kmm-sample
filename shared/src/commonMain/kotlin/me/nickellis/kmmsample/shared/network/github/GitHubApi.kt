@@ -16,6 +16,7 @@
 
 package me.nickellis.kmmsample.shared.network.github
 
+import co.touchlab.kermit.Kermit
 import io.ktor.client.*
 import io.ktor.client.features.*
 import io.ktor.client.features.auth.*
@@ -23,49 +24,49 @@ import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 import io.ktor.client.features.logging.*
 import io.ktor.client.request.*
-import io.ktor.client.request.get
 import io.ktor.http.*
-import kotlinx.serialization.json.Json
-import me.nickellis.kmmsample.BuildKonfig
-import me.nickellis.kmmsample.shared.ktx.RepoPreviewJson
+import me.nickellis.kmmsample.shared.ktx.ensureNotFrozen
+import me.nickellis.kmmsample.shared.ktx.isFrozen
 import me.nickellis.kmmsample.shared.network.github.repos.Repo
 import org.koin.core.KoinComponent
-import org.koin.core.inject
+import kotlin.native.concurrent.ThreadLocal
 
-class GitHubApi : KoinComponent {
+@ThreadLocal
+private const val Tag = "GitHubApi"
 
-    private val platformLogger: co.touchlab.kermit.Logger by inject()
+@ThreadLocal
+private const val baseUrl = "https://api.github.com"
 
-    companion object {
-        private const val baseUrl = "https://api.github.com"
-        val username = BuildKonfig.OAUTH_GITHUB_USERNAME
-    }
-
-    private val nonStrictJson = Json {
-        isLenient = true
-        ignoreUnknownKeys = true
-    }
-
-    private val client by lazy {
-        HttpClient {
-            defaultRequest {
-                userAgent("me.nickellis.kmmsample/1.0")
-            }
-
-            install(Auth) { providers.add(GitHubAuthProvider) }
-            install(JsonFeature) { serializer = KotlinxSerializer(nonStrictJson) }
-            install(Logging) {
-                logger = object : Logger {
-                    override fun log(message: String) {
-                        platformLogger.v(message = message, tag = "GitHub API")
-                    }
-                }
-                level = LogLevel.ALL
-            }
-        }
-    }
+class GitHubApi(log: Kermit) : KoinComponent {
 
     init {
+        ensureNotFrozen()
+    }
+
+    // If this is a constructor property, then it gets captured inside HttpClient config and freezes this whole class
+    @Suppress("CanBePrimaryConstructorProperty")
+    private val platformLogger = log
+
+    private val client = HttpClient {
+        defaultRequest {
+            userAgent("me.nickellis.kmmsample/1.0")
+        }
+
+        install(Auth) { providers.add(GitHubAuthProvider()) }
+        install(JsonFeature) {
+            serializer = KotlinxSerializer(kotlinx.serialization.json.Json {
+                isLenient = true
+                ignoreUnknownKeys = true
+            })
+        }
+        install(Logging) {
+            logger = object : Logger {
+                override fun log(message: String) {
+                    //platformLogger.v(Tag) { message }
+                }
+            }
+            level = LogLevel.ALL
+        }
     }
 
     /**
@@ -74,15 +75,17 @@ class GitHubApi : KoinComponent {
      * @param page Page index, 0 indexed
      * @param pageSize Number of repositories to return
      *
-     * @see <a href="https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#list-repositories-for-the-authenticated-user"></a>
+     * @see <a href="https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#list-repositories-for-the-authenticated-user">list repos doc</a>
      */
     suspend fun getRepos(page: Int = 0, pageSize: Int = 20) = client.get<List<Repo>> {
-        accept(ContentType.Application.RepoPreviewJson)
+        accept(ContentType.parse("application/vnd.github.nebula-preview+json"))
         url {
             takeFrom("$baseUrl/user/repos")
             parameter("page", page)
             parameter("page_size", pageSize)
-            platformLogger.d("${headers.build()}", "TESTING")
         }
+    }.also {
+        val res = it.isFrozen
+        platformLogger.d(Tag) { "FROZEN:$res ${client.isFrozen}" }
     }
 }

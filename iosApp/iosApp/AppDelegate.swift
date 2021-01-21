@@ -4,10 +4,21 @@ import shared
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        GitHubSDKKt.create()
+        let sdk = iOSGitHubSDK()
+        
+        sdk.getRepos(
+            page: 0,
+            pageSize: 20,
+            completionHandler: { (repos, error) -> Void in }
+        )
+        
+//        sdk.getReposCallback(page: 0, pageSize: 20)
+//            .subscribe(
+//                onSuccess: { (repos) -> Void in },
+//                onError: { (error) -> Void in }
+//            )
+        
         // Override point for customization after application launch.
         return true
     }

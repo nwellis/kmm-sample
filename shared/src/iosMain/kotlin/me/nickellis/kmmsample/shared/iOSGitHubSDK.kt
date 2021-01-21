@@ -14,10 +14,14 @@
  * limitations under the License.
  */
 
-package me.nickellis.kmmsample.shared.ktx
+package me.nickellis.kmmsample.shared
 
-expect fun <T> T.freeze(): T
+import me.nickellis.kmmsample.shared.storage.DriverFactory
 
-expect val Any?.isFrozen: Boolean
+class iOSGitHubSDK : GitHubSDK(sqlDriver = DriverFactory().createDriver()) {
+    suspend fun getRepos(page: Int = 0, pageSize: Int = 20) = api.getRepos(page, pageSize)
 
-expect fun Any.ensureNotFrozen()
+    fun getReposCallback(page: Int = 0, pageSize: Int = 20) = SuspendResource {
+        api.getRepos(page, pageSize)
+    }
+}

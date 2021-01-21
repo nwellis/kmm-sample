@@ -18,7 +18,10 @@ package me.nickellis.kmmsample.shared.ktx
 
 import kotlin.native.concurrent.ensureNeverFrozen
 import kotlin.native.concurrent.freeze
+import kotlin.native.concurrent.isFrozen
 
 actual fun <T> T.freeze(): T = freeze()
+
+actual val Any?.isFrozen: Boolean get() = isFrozen
 
 actual fun Any.ensureNotFrozen() = ensureNeverFrozen()
